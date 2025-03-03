@@ -757,6 +757,7 @@ if __name__ == '__main__':
 	некоторые имеют разные символы конца строк. в юникс '\n', на винде '\r\n'
 	некоторые в перовй строке могут иметь название столбиков
 	как записыать:
+    
 	import csv
 
 	villains = [
@@ -769,10 +770,11 @@ if __name__ == '__main__':
 	with open ('villains','wt', newline='') as f:
 		csvout = csv.writer(f)
 		csvout.writerows(villains)
+    
 
 
 ### Считать обратно:
-```
+```python
 import csv
 
 
@@ -783,7 +785,7 @@ with open ('villains','rt') as f:
 print(vil) # [['doctor', 'no'], ['rosa', 'kleb'], ['Nikita', 'krytoy'], ['Roman', 'geniy']]
 ```
 # Считать можно и по-другому
-```
+```python
 import csv
 
 
@@ -794,7 +796,7 @@ with open ('villains','rt') as f:
 print(vil) # [{'doctor': 'rosa', 'no': 'kleb'}, {'doctor': 'Nikita', 'no': 'krytoy'}, {'doctor': 'Roman', 'no': 'geniy
 ```
 # Есть и еще один способ
-```
+```python
 import csv
 
 
@@ -813,7 +815,7 @@ html - формат гипертекстового языка разметка h
 	это основной формат документов в интернете
 ```
 # JSON ПОПУЛЯРНЫЙ ФОРМАТ ОБМЕНА ДАННЫМИ МЕЖДУ ПРОГРМАММАМИ
-```
+```python
 import json
 
 menu = \
