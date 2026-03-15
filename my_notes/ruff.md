@@ -182,21 +182,39 @@ Settings (Ctrl+Alt+S)
 ### Шаг 2 — настроить плагин
 
 ```
-Settings
-→ Tools
-→ Ruff
+Settings → Tools → Ruff
 ```
 
-Что включить:
-- ✅ **Use ruff format** — использовать ruff для форматирования
-- ✅ **Run on save** — запускать проверку при сохранении файла
-- ✅ **Show rule code** — показывать код правила (E501, F401 и т.д.)
+#### Галочки — что включать
 
-В поле **Ruff executable** должен автоматически найтись путь к ruff.
-Если нет — укажи вручную:
+| Галочка | Включать? | Что делает |
+|---|---|---|
+| **Run ruff when the python file is saved** | ✅ ДА | Запускает проверку при каждом сохранении файла. Главная галочка — включи обязательно |
+| **Exclude files outside of the project** | ✅ ДА | Появляется под предыдущей. Не проверяет чужие библиотеки из venv |
+| **Run ruff when Reformat Code** | ✅ ДА | Ruff форматирует когда нажимаешь Ctrl+Alt+L |
+| **Show Rule Code on inspection message** | ✅ ДА | Показывает код правила (E501, F401) в подсказках — удобно для поиска в документации |
+| **Always use Global executable** | ❌ НЕТ | Использовать глобальный ruff вместо из venv проекта. Оставь выключенной — пусть использует ruff из твоего окружения |
+| **Use ruff-lsp (Experimental)** | ❌ НЕТ | Устаревший экспериментальный режим. Не нужен |
+| **Use `ruff server` for LSP functionality** | ✅ ДА | Современный режим — подсветка ошибок прямо в редакторе в реальном времени. Включи если хочешь видеть ошибки сразу, без сохранения |
+| **Use ruff format (Experimental)** | ✅ ДА | Включает `ruff format` (форматтер). Включи — иначе ruff будет только линтить, но не форматировать |
+
+#### Проблема "Ruff executable not found"
+
+Если в полях написано "Ruff executable not found" — PyCharm не нашёл ruff автоматически.
+
+Нажми **Auto-detect ruff** — PyCharm попробует найти сам.
+
+Если не помогло — укажи путь вручную в поле **Project Specific → ruff executable**:
 ```
 C:\Users\aboob\PycharmProjects\testGit\venv_win\Scripts\ruff.exe
 ```
+
+Секция **Global** — путь к ruff для всех проектов сразу (если используешь один ruff глобально).
+Секция **Project Specific** — путь к ruff конкретно для этого проекта (рекомендую использовать именно её).
+
+#### Ruff config file
+
+Поле внизу — путь к файлу конфигурации. Оставь пустым — ruff сам найдёт `pyproject.toml` в корне проекта.
 
 ### Шаг 3 — форматирование по Ctrl+Alt+L
 
