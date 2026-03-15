@@ -33,6 +33,7 @@ class FieldName:
     MONTH = "month"
     DEPARTAMENT = "departament"
 
+
 def write_csv_dict():
     fieldnames = [
         FieldName.NAME,
@@ -40,7 +41,7 @@ def write_csv_dict():
         FieldName.DEPARTAMENT,
     ]
 
-    with open(BIRTH_MONTH_CSV_FILE, 'w', newline='') as f:
+    with open(BIRTH_MONTH_CSV_FILE, "w", newline="") as f:
         csv_writer = csv.DictWriter(f, fieldnames=fieldnames)
         csv_writer.writeheader()
 

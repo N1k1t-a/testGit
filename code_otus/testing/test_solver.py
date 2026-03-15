@@ -1,6 +1,8 @@
-from code_otus.testing.main import Solver, dev
-import pytest
 from unittest.mock import patch
+
+import pytest
+
+from code_otus.testing.main import Solver, dev
 
 
 @pytest.fixture()
@@ -20,29 +22,20 @@ def solver_mix(request):
 
 
 class TestSolver:
-
     @pytest.mark.parametrize(
-        'params, result',
+        "params, result",
         (
-                ((1, 3), 4),
-                ((2, 4), 6),
-                ((12, 2), 14),
-        )
+            ((1, 3), 4),
+            ((2, 4), 6),
+            ((12, 2), 14),
+        ),
     )
     def test_add(self, params, result):
         solver = Solver(*params)
         assert solver.add() == result
 
-
     @pytest.mark.parametrize(  # более сложный вариант, но практичнее, потому что функция из вне класса работает
-        'solver_mix, result',
-            (
-                ((12, 2), 14),
-                ((12, 2), 14),
-                ((12, 2), 14),
-                ((12, 2), 14)
-        ),
-        indirect=['solver_mix']
+        "solver_mix, result", (((12, 2), 14), ((12, 2), 14), ((12, 2), 14), ((12, 2), 14)), indirect=["solver_mix"]
     )
     def test_add_many(self, solver_mix, result):
         assert solver_mix.add() == result
@@ -53,16 +46,14 @@ class TestSolver:
     def test_mul_other(self, get_other_solver):
         assert get_other_solver.mul() == 8
 
-
-    def test_add_random_value(self, get_solver):
+    def test_add_random_value_range(self, get_solver):
         value = get_solver.add_random_value()
-        assert  value <= 103 and value >= 50
-
+        assert value <= 103 and value >= 50
 
     # Тут мы тестим рандомные значения путем замены рандомного значения на то, которое мы подставили с помощью patch
     # Этот процесс назыввается мокать
     def test_add_random_value(self, get_solver):
-        with patch('code_otus.testing.main.random.randint', return_value=66):
+        with patch("code_otus.testing.main.random.randint", return_value=66):
             result = get_solver.add_random_value()
             assert result == 69
 
@@ -83,12 +74,7 @@ def test_add_random_value_mocked(mock_randint):
 
 
 @pytest.mark.parametrize(  # более простой способ, все прокдивается напрямую
-    'a, b, result',
-    (
-        (4, 2, 2),
-        (8, 2, 4),
-        (100, 4, 25)
-    )
+    "a, b, result", ((4, 2, 2), (8, 2, 4), (100, 4, 25))
 )
 def test_dev(a, b, result):
     assert dev(a, b) == result

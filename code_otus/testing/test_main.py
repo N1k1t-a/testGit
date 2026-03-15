@@ -1,9 +1,9 @@
-from code_otus.testing.main import Solver, dev
 import unittest
+
+from code_otus.testing.main import Solver, dev
 
 
 class TestSolver(unittest.TestCase):
-
     def setUp(self) -> None:
         print("выполняется при каждом новом начатом тесте")
         self.solver = Solver(1, 2)
@@ -18,10 +18,9 @@ class TestSolver(unittest.TestCase):
 
 
 class TestDev(unittest.TestCase):
-
     def test_dev(self):
         self.assertEqual(dev(4, 2), 2)
 
     def test_dev_by_zero(self):
         with self.assertRaises(ZeroDivisionError):  # тут мы тестим на содержание ошибки
-            dev(10,0)
+            dev(10, 0)

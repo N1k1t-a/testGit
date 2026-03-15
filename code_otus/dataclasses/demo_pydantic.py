@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, constr, conint
+from pydantic import BaseModel, Field, conint, constr
 
 
 def default_value() -> list[str]:
@@ -18,8 +18,10 @@ class User(BaseModel):
         self.age += 1
 
     class Config:
-        validate_assignment = True  # Позволяет проверять (валидировать) значения при присваивании новых значений уже существующим полям модели.
-        validate_by_name = True  # Разрешает инициализацию (создание экземпляра) модели по именам полей, даже если у них есть алиасы (alias).
+        validate_assignment = True  # Позволяет проверять (валидировать) значения при присваивании новых значений
+        # уже существующим полям модели.
+        validate_by_name = True  # Разрешает инициализацию (создание экземпляра) модели по именам полей, даже если
+        # у них есть алиасы (alias).
 
 
 class Product(BaseModel):
@@ -28,15 +30,11 @@ class Product(BaseModel):
     categories: list[str] = Field(default_factory=default_value)
 
     class Config:
-        frozen = True # делаем так, чтобы объекты были неизменяемы
+        frozen = True  # делаем так, чтобы объекты были неизменяемы
 
 
 def main():
-    admin = User(id=1,
-                 name="admin",
-                 username="александра",
-                 age=18
-                 )
+    admin = User(id=1, name="admin", username="александра", age=18)
     print(admin)
     print([admin])
 
@@ -44,22 +42,15 @@ def main():
         "age": 50,
     }
 
-    john = User(
-        id=1,
-        name="john",
-        username="john",
-        **user_data,
-        account_id=1
-    )
+    john = User(id=1, name="john", username="john", **user_data, account_id=1)
 
     print(john)
     john.inc_age()
     print(john)
 
-
     bread = Product(price=55.2, weight=100)
     print(bread)
-    bread.categories.append('mild')
+    bread.categories.append("mild")
     print(bread)
 
     milk = Product(price=12.3, weight=122)

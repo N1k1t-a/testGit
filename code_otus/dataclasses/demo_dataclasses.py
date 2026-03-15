@@ -1,4 +1,4 @@
-from dataclasses import dataclass, asdict, astuple
+from dataclasses import asdict, astuple, dataclass
 
 
 @dataclass  # это декоратор
@@ -23,7 +23,7 @@ class Person:
 
 
 def main():
-    john = User(id=10, name='даун', email="john@example.com")
+    john = User(id=10, name="даун", email="john@example.com")
     print(john)
     person = Person(30, 95, 42)
     point = Point(30, 95, 42)

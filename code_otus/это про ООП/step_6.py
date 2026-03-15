@@ -1,10 +1,8 @@
-
-
 def div_safe(a, b):
     print("start for", [a, b])
 
     try:
-        return a/b
+        return a / b
 
     except TypeError as e:
         print("ooops, type error:", e, repr(e))
